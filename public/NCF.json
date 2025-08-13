@@ -1,0 +1,888 @@
+{
+  "B. Net Cash Outflow (Arus Kas Keluar Bersih)": {
+    "1. Arus Kas Keluar": {
+      "1.1": {
+        "judul": "Penarikan Simpanan Nasabah Perorangan",
+        "detail": [
+          {
+            "kode": "1.1.1",
+            "komponen": "Simpanan stabil",
+            "haircut": 5,
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": "Simpanan Ritel/Individu yang memiliki jatuh tempo di bawah 1 bulan yang diamin oleh LPS dengan memiliki karakteristik :\n1. Memiliki hubungan atau keterkaitan dengan bank\n- nasabah mempunyai paling sedikit 1 (satu) produk aktif tambahan selain fasilitas kredit dengan Bank\n- nasabah memperoleh fasilitas kredit dari Bank dengan jangka waktu lebih dari 3 (tiga) bulan; dan/atau\n-  nasabah adalah pihak terkait Bank\n2. Simpanan yang digunakan untuk keperluan transaksi secara rutin antara lain rekening untuk penerimaan penghasilan baik berupa gaji atau hasil usaha"
+          },
+          {
+            "kode": "1.1.2",
+            "komponen": "Simpanan stabil yang memenuhi kriteria Pasal 50 ayat (2)",
+            "haircut": 0,
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": null
+          },
+          {
+            "kode": "subtotal",
+            "komponen": "Jumlah Simpanan stabil nasabah perorangan",
+            "haircut": null,
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": null
+          },
+          {
+            "kode": "1.1.3",
+            "komponen": "Simpanan kurang stabil",
+            "haircut": 10,
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": "Simpanan Individu baik yang dijamin LPS maupun yang bukan dijamin LPS yang tidak tergolong simpanan stabil dan jatuh tempo di bawah 1 bulan (untuk deposito)"
+          },
+          {
+            "kode": "1.1.4",
+            "komponen": "Simpanan kurang stabil yang memenuhi kriteria Pasal 50 ayat (2)",
+            "haircut": 0,
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": null
+          },
+          {
+            "kode": "1.1.5",
+            "komponen": "Tambahan kategori Simpanan dengan tingkat penarikan yang lebih tinggi yang ditetapkan oleh pengawas",
+            "haircut": 0,
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": null
+          },
+          {
+            "kode": "header",
+            "komponen": "-------- Kategori 1",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": "header",
+            "komponen": "-------- Kategori 2",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": "header",
+            "komponen": "-------- Kategori 3",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": "subtotal",
+            "komponen": "Jumlah simpanan kurang stabil nasabah perorangan",
+            "haircut": null,
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": null
+          },
+          {
+            "kode": "subtotal",
+            "komponen": "Jumlah Simpanan nasabah perorangan",
+            "haircut": null,
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": null
+          }
+        ]
+      },
+      "1.2": {
+        "judul": "Penarikan Pendanaan dari Nasabah Usaha Mikro dan Usaha Kecil",
+        "detail": [
+          {
+            "kode": "header",
+            "komponen": "Jumlah Pendanaan nasabah Usaha Mikro dan Usaha Kecil :",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": "1.2.1",
+            "komponen": "Pendanaan stabil dari nasabah yang memenuhi kriteria Pasal 15 ayat (1)",
+            "haircut": 5,
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": "Pendanaan yang berasal dari nasabah Usaha Mikro dan Usaha Kecil yang tergolong sebagai Usaha Mikro dan usaha kecil dengan total pendanaan dari setiap nasabah paling tinggi Rp 5 Miliar dengan definisi pendanaan stabil"
+          },
+          {
+            "kode": "1.2.2",
+            "komponen": "Pendanaan stabil dari nasabah yang memenuhi.kriteria Pasal 15 ayat (2)",
+            "haircut": 5,
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": "Pendanaan yang berasal dari nasabah Usaha Mikro dan Usaha Kecil yang tergolong sebagai Usaha Mikro dan usaha kecil yang diperlakukan seperti nasabah perorangan dengan total pendanaan dari setiap nasabah paling tinggi Rp 5 Miliar dengan definisi pendanaan stabil"
+          },
+          {
+            "kode": "1.2.3",
+            "komponen": "Pendanaan stabil dari nasabah yang memenuhi kriteria Pasal 15 ayat (3)",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": "subtotal",
+            "komponen": "Jumlah Pendanaan nasabah stabil Usaha Mikro dan Usaha Kecil",
+            "haircut": null,
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": null
+          },
+          {
+            "kode": "1.2.4",
+            "komponen": "Pendanaan kurang stabil dari nasabah yang memenuhi kriteria Pasal 21 ayat (1)",
+            "haircut": 10,
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": "Pendanaan yang berasal dari nasabah Usaha Mikro dan Usaha Kecil yang tergolong sebagai Usaha Mikro dan usaha kecil dengan total pendanaan dari setiap nasabah paling tinggi Rp 5 Miliar dengan definisi pendanaan kurang stabil"
+          },
+          {
+            "kode": "1.2.5",
+            "komponen": "Pendanaan kurang stabil yang memenuhi kriteria Pasal 50 .ayat (2)",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": "1.2.6",
+            "komponen": "Tambahan kategori Simpanan dengan tingkat penarikan yang lebih tinggi yang ditetapkan oleh pengawas",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": "header",
+            "komponen": "-------- Kategori 1",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": "header",
+            "komponen": "-------- Kategori 2",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": "header",
+            "komponen": "-------- Kategori 3",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": "subtotal",
+            "komponen": "Jumlah Pendanaan nasabah kurang stabil Usaha Mikro dan Usaha.Kecil",
+            "haircut": null,
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": null
+          },
+          {
+            "kode": "subtotal",
+            "komponen": "Jumlah Penarikan Pendanaan Usaha Mikro dan Usaha Kecil",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          }
+        ]
+      },
+      "1.3": {
+        "judul": "Penarikan Pendanaan dari Nasabah Korporasi",
+        "detail": [
+          {
+            "kode": "header",
+            "komponen": "Jumlah Pendanaan dari nasabah korporasi :",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": "header",
+            "komponen": "1.3.1. Simpanan operasional :",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": "1.3.1.1",
+            "komponen": "Dijamin oleh LPS",
+            "haircut": 5,
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": "Simpanan korporasi yang dijamin LPS yang pendanaannya digunakan untuk kegiatan kliring, kustodian atau cash management yang memenuhi kriteria :\n-  merupakan Simpanan yang wajib ditempatkan oleh nasabah korporasi pada Bank untuk menggunakan jasa atau produk Bank lainnya\n- nasabah korporasi bergantung secara signifikan kepada Bank untuk dapat menyediakan fasilitas kliring, kustodian atau cash management selama 30 (tiga puluh) hari kedepan\n- merupakan Simpanan yang digunakan sebagai prasyarat agar nasabah korporasi dapat menjalankan kegiatan kliring, kustodian atau cash management\n- terdapat perjanjian yang mengikat secara hukum dengan nasabah korporasi\n- apabila perjanjian akan dibatalkan sebelum 30 (tiga puluh) hari, nasabah korporasi harus memberitahukan kepada Bank paling tidak 30 (tiga puluh) hari sebelumnya; atau dikenakan denda yang signifikan\n'ditempatkan pada rekening terpisah yang tidak memberikan insentif ekonomi kepada nasabah yang menempatkan dananya secara berlebih diluar dari tujuan transaksional pada rekening ini"
+          },
+          {
+            "kode": "1.3.1.2",
+            "komponen": "Tidak dijamin oleh LPS",
+            "haircut": 25,
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": "Simpanan korporasi yang tidak dijamin LPS yang pendanaannya digunakan untuk kegiatan kliring, kustodian atau cash management"
+          },
+          {
+            "kode": "header",
+            "komponen": "1.3.2. Simpanan operasional yang memenuhi kriteria Pasal 50 ayat (1):",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": "1.3.2.1",
+            "komponen": "Dijamin oleh Lembaga penjaminan",
+            "haircut": 20,
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": null
+          },
+          {
+            "kode": "1.3.2.2",
+            "komponen": "Tidak dijamin oleh lembaga penjaminan",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": "subtotal",
+            "komponen": "Jumlah Simpanan operasional nasabah korporasi",
+            "haircut": null,
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": null
+          },
+          {
+            "kode": "header",
+            "komponen": "1.3.2. Simpanan non-operasional dan/atau kewajiban yang bersifat non-operasional untuk kategori nasabah perusahaan non-keuangan, Pemerintah Pusat, Bank Indonesia, Pemerintah Negara Lain, Bank Sentral Negara Lain, Bank Pembangunan Multilateral, dan/atau.entitas sektor publik :",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": "1.3.2.1",
+            "komponen": "Dijamin oleh LPS",
+            "haircut": "20%",
+            "nilai": "532.548",
+            "nilai_setelah_haircut": "106.510",
+            "keterangan": "Simpanan korporasi yang dijamin LPS yang pendanaannya bukan simpanan operasional untuk kategori nasabah perusahaan non-keuangan,   Pemerintah Pusat, Bank Indonesia, Pemerintah Negara Lain, Bank Sentral Negara Lain, Bank Pembangunan Multilateral, dan/atau entitas sektor publik"
+          },
+          {
+            "kode": "1.3.2.1",
+            "komponen": "Tidak dijamin oleh LPS",
+            "haircut": "40%",
+            "nilai": "1.932.327",
+            "nilai_setelah_haircut": "772.931",
+            "keterangan": "Simpanan korporasi yang tidak dijamin LPS yang pendanaannya bukan simpanan operasional"
+          },
+          {
+            "kode": "header",
+            "komponen": "1.3.3. Simpanan non-operasional dan/atau kewajiban yang bersifat non.operasional yang memenuhi kriteria Pasal 50 ayat (1):",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": "1.3.3.1",
+            "komponen": "Dijamin oleh Lembaga penjaminan",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": "1.3.3.2",
+            "komponen": "Tidak dijamin oleh lembaga penjaminan",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": null,
+            "komponen": "Simpanan non-operasional dan/atau kewajiban yang bersifat non-operasional untuk kategori entitas lainnya",
+            "haircut": "100%",
+            "nilai": "2.959.507",
+            "nilai_setelah_haircut": "2.959.507",
+            "keterangan": "Simpanan korporasi yang dijamin LPS yang pendanaannya bukan simpanan operasional untuk kategori nasabah Lembaga Keuangan dan entitas lainnya"
+          },
+          {
+            "kode": null,
+            "komponen": "Surat berharga berupa surat utang yang diterbitkan Bank",
+            "haircut": "100%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": null
+          },
+          {
+            "kode": "subtotal",
+            "komponen": "Jumlah Simpanan non-operasional dan/atau kewajiban yang bersifat non-operasional",
+            "haircut": null,
+            "nilai": "5.424.382",
+            "nilai_setelah_haircut": "3.838.948",
+            "keterangan": null
+          },
+          {
+            "kode": "subtotal",
+            "komponen": "Jumlah Penarikan Pendanaan yang Berasal dari Nasabah Korporasi",
+            "haircut": null,
+            "nilai": "5.945.630",
+            "nilai_setelah_haircut": "3.964.775",
+            "keterangan": null
+          }
+        ]
+      },
+      "1.4": {
+        "judul": "Penarikan Pendanaan dengan Agunan (Secured Funding)",
+        "detail": [
+          {
+            "kode": null,
+            "komponen": "Transaksi dilakukan dengan Bank Indonesia",
+            "haircut": "0%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": null
+          },
+          {
+            "kode": null,
+            "komponen": "Transaksi dilakukan dengan agunan HQLA Level 1",
+            "haircut": "0%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": null
+          },
+          {
+            "kode": null,
+            "komponen": "Transaksi dilakukan dengan agunan HQLA Level 2A",
+            "haircut": "15%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": null
+          },
+          {
+            "kode": null,
+            "komponen": "Transaksi dilakukan dengan Pemerintah Pusat atau entitas sektor publik yang memiliki bobot risiko paling tinggi 20% atau bank pembangunan multilateral, dengan agunan selain HQLA Level 1 atau HQLA Level 2A",
+            "haircut": "25%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": null
+          },
+          {
+            "kode": null,
+            "komponen": "Transaksi dengan agunan HQLA Level 2B berupa EBA",
+            "haircut": "25%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": null
+          },
+          {
+            "kode": null,
+            "komponen": "Transaksi dengan agunan HQLA Level 2B selain EBA",
+            "haircut": "50%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": null
+          },
+          {
+            "kode": null,
+            "komponen": "Transaksi dilakukan dengan agunan selain HQLA",
+            "haircut": "100%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": null
+          },
+          {
+            "kode": "subtotal",
+            "komponen": "Jumlah Penarikan Pendanaan dengan Agunan (Secured Funding)",
+            "haircut": null,
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": null
+          }
+        ]
+      },
+      "1.5": {
+        "judul": "Arus Kas Keluar Lainnya (Additional Requirement)",
+        "detail": [
+          {
+            "kode": "1.5.1",
+            "komponen": "Arus kas keluar lainnya terkait transaksi derivatif",
+            "haircut": "100%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": null
+          },
+          {
+            "kode": "header",
+            "komponen": "1.5.2. Arus kas keluar lainnya terkait peningkatan kebutuhan likuiditas",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": "Dinihilkan"
+          },
+          {
+            "kode": "1.5.2.1",
+            "komponen": "Terkait dengan perubahan mark to market atas transaksi derivatif atau transaksi lainnya",
+            "haircut": 0,
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": "Dinihilkan"
+          },
+          {
+            "kode": "1.5.2.2",
+            "komponen": "Terkait dengan potensi perubahan nilai agunan untuk derivatif dan transaksi lainnya",
+            "haircut": "20%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Dinihilkan"
+          },
+          {
+            "kode": "1.5.2.3",
+            "komponen": "Terkait dengan kelebihan agunan yang tidak terpisah (non-segregated collateral) yang dikuasai oleh Bank yang secara kontraktual dapat diambil setiap saat oleh pihak lawan",
+            "haircut": "100%",
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": "Dinihilkan"
+          },
+          {
+            "kode": "1.5.2.4",
+            "komponen": "Terkait dengan kewajiban penyediaan agunan kepada pihak lawan (counterparty) atas suatu transaksi tertentu namun pihak lawan (counterparty) belum meminta agunan tersebut",
+            "haircut": 0,
+            "nilai": 0,
+            "nilai_setelah_haircut": 0,
+            "keterangan": "Dinihilkan"
+          },
+          {
+            "kode": "1.5.2.5",
+            "komponen": "Terkait dengan potensi penukaran agunan yang berupa HQLA menjadi bukan HQLA",
+            "haircut": 100,
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Dinihilkan"
+          },
+          {
+            "kode": "header",
+            "komponen": "1.5.3. Arus kas keluar lainnya terkait kehilangan Pendanaan",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": "Dinihilkan"
+          },
+          {
+            "kode": "1.5.3.1",
+            "komponen": "Berasal dari efek beragun aset, covered bonds, dan instrumen pembiayaan terstruktur lainnya yang diterbitkan oleh Bank",
+            "haircut": "100%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Dinihilkan"
+          },
+          {
+            "kode": "1.5.3.2",
+            "komponen": "Berasal dari asset-backed commercial paper, conduits, securities investment vehicles",
+            "haircut": 100,
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Dinihilkan"
+          },
+          {
+            "kode": "header",
+            "komponen": "1.5.4. Arus kas keluar lainnya terkait dengan kewajiban komitmen dalam bentuk fasilitas kredit",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": "Kewajiban komitmen dalam bentuk fasilitas kredit"
+          },
+          {
+            "kode": "1.5.4.1",
+            "komponen": "Fasilitas diberikan kepada perorangan atau Usaha Mikro dan Usaha Kecil",
+            "haircut": "5%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Kewajiban komitmen dalam bentuk fasilitas kredit kepada perorangan atau Usaha Mikro dan Usaha Kecil"
+          },
+          {
+            "kode": "1.5.4.2",
+            "komponen": "Fasilitas diberikan kepada korporasi non-keuangan, Pemerintah Pusat, Bank Indonesia, pemerintah negara lain, bank sentral negara lain, entitas sektor publik, dan/atau bank pembangunan multilateral",
+            "haircut": "10%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Kewajiban komitmen dalam bentuk fasilitas kredit kepada  korporasi non-keuangan, Pemerintah Pusat, Bank Indonesia, pemerintah negara lain, bank sentral negara lain, entitas sektor publik, dan/atau bank pembangunan multilateral"
+          },
+          {
+            "kode": "1.5.4.3",
+            "komponen": "Fasilitas diberikan kepada Bank dan/atau lembaga jasa keuangan",
+            "haircut": "40%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Kewajiban komitmen dalam bentuk fasilitas kredit kepada bank dan/atau lembaga jasa keuangan"
+          },
+          {
+            "kode": "1.5.4.4",
+            "komponen": "Fasilitas diberikan kepada entitas lainnya",
+            "haircut": "100%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Kewajiban komitmen dalam bentuk fasilitas kredit kepada entitas lainnya"
+          },
+          {
+            "kode": "header",
+            "komponen": "1.5.5. Arus kas keluar lainnya terkait dengan kewajiban komitmen dalam bentuk fasilitas likuiditas",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": "Kewajiban komitmen dalam bentuk fasilitas likuiditas"
+          },
+          {
+            "kode": "1.5.5.1",
+            "komponen": "Fasilitas diberikan kepada perorangan atau Usaha Mikro dan Usaha Kecil",
+            "haircut": "5%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Kewajiban komitmen dalam bentuk fasilitas likuiditas kepada perorangan atau Usaha Mikro dan Usaha Kecil"
+          },
+          {
+            "kode": "1.5.5.2",
+            "komponen": "Fasilitas diberikan kepada korporasi non-keuangan, Pemerintah Pusat, Bank Indonesia, pemerintah negara lain, bank sentral negara lain, entitas sektor publik, dan/atau bank pembangunan multilateral",
+            "haircut": "30%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Kewajiban komitmen dalam bentuk fasilitas likuiditas kepada  korporasi non-keuangan, Pemerintah Pusat, Bank Indonesia, pemerintah negara lain, bank sentral negara lain, entitas sektor publik, dan/atau bank pembangunan multilateral"
+          },
+          {
+            "kode": "1.5.5.3",
+            "komponen": "Fasilitas diberikan kepada Bank dan/atau lembaga jasa keuangan",
+            "haircut": "40%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Kewajiban komitmen dalam bentuk fasilitas likuiditas kepada bank dan/atau lembaga jasa keuangan"
+          },
+          {
+            "kode": "1.5.5.4",
+            "komponen": "Fasilitas diberikan kepada entitas lainnya",
+            "haircut": "100%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Kewajiban komitmen dalam bentuk fasilitas likuiditas kepada entitas lainnya"
+          },
+          {
+            "kode": "header",
+            "komponen": "1.5.6. Kewajiban kontraktual lainnya untuk menyediakan dana kepada :",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": "Kewajiban kontraktual lainnya untuk :"
+          },
+          {
+            "kode": "1.5.6.1",
+            "komponen": "Lembaga jasa keuangan",
+            "haircut": "100%",
+            "nilai": "78.744,44",
+            "nilai_setelah_haircut": "78.744",
+            "keterangan": "Lembaga Jasa Keuangan"
+          },
+          {
+            "kode": "1.5.6.2",
+            "komponen": "Nasabah perseorangan",
+            "haircut": "100% dari nilai selisih lebih antara kewajiban kontraktual untuk menyalurkan dana dengan 50% total arus kas masuk",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Nasabah Perseorangan"
+          },
+          {
+            "kode": "1.5.6.3",
+            "komponen": "Korporasi non-keuangan",
+            "haircut": "100% dari nilai selisih lebih antara kewajiban kontraktual untuk menyalurkan dana dengan 50% total arus kas masuk",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Korporasi Non Keuangan"
+          },
+          {
+            "kode": "header",
+            "komponen": "1.5.7. Kewajiban kontijensi Pendanaan lainnya",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": "Kewajiban Kontinjensi pendanaan lainnya"
+          },
+          {
+            "kode": "1.5.7.1",
+            "komponen": "Berasal dari instrumen trade finance",
+            "haircut": "3%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Berasal dari instrumen trade finance"
+          },
+          {
+            "kode": "1.5.7.2",
+            "komponen": "Berasal dari fasilitas kredit dan fasilitas likuiditas yang bersifat.unconditionally revocable uncommitted",
+            "haircut": "0%",
+            "nilai": "2.106.616,06",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Berasal dari fasilitas kredit dan fasilitas likuiditas yang bersifat unconditionally revocable uncommitted"
+          },
+          {
+            "kode": "1.5.7.3",
+            "komponen": "Berasal dari letter of credit (L/C) dan garansi yang tidak terkait dengan kewajiban trade finance",
+            "haircut": "5%",
+            "nilai": "31.816,39",
+            "nilai_setelah_haircut": "1.591",
+            "keterangan": "Berasal dari letter of credit (L/C) dan garansi yang tidak terkait dengan ...kewajiban trade finance"
+          },
+          {
+            "kode": "1.5.7.4",
+            "komponen": "Berasal dari permintaan potensial untuk membeli kembali utang bank atau yang terkait dengan securities investment vehicles dan fasilitas pembiayaan lainnya",
+            "haircut": "5%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Berasal dari permintaan potensial untuk membeli kembali utang bank ...atau yang terkait dengan securities investment vehicles dan fasilitas ...pembiayaan lainnya"
+          },
+          {
+            "kode": "1.5.7.5",
+            "komponen": "Berasal dari structured product yang diantisipasi oleh nasabah melalui …ready marketability",
+            "haircut": "5%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Berasal dari structured product yang diantisipasi oleh nasabah melalui ready marketability"
+          },
+          {
+            "kode": "1.5.7.6",
+            "komponen": "Berasal dari dana kelolaan (managed funds) yang dijual dengan tujuan menjaga kestabilan nilai",
+            "haircut": "5%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Berasal dari dana kelolaan (managed funds) yang dijual dengan tujuan menjaga kestabilan nilai"
+          },
+          {
+            "kode": "1.5.7.7",
+            "komponen": "Kewajiban untuk menutup potensi pembelian kembali surat berharga, dengan atau tanpa agunan, yang memiliki jangka waktu lebih dari 30 (tiga puluh) hari bagi emiten yang memiliki afiliasi dengan dealer atau market maker",
+            "haircut": "5%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Kewajiban untuk menutup potensi pembelian kembali surat berharga, dengan atau tanpa agunan, yang memiliki jangka waktu lebih dari 30 (tiga puluh) hari bagi emiten yang memiliki afiliasi dengan dealer atau market maker"
+          },
+          {
+            "kode": "1.5.7.8",
+            "komponen": "Kewajiban non-kontraktual posisi short nasabah yang dilindungi dengan …agunan nasabah lain",
+            "haircut": "50%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Kewajiban non-kontraktual posisi short nasabah yang dilindungi dengan agunan nasabah lain"
+          },
+          {
+            "kode": null,
+            "komponen": "Arus kas keluar kontraktual lainnya",
+            "haircut": "100%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": null
+          },
+          {
+            "kode": "subtotal",
+            "komponen": "Jumlah Penarikan terkait Arus Kas Keluar Lainnya (Additional Requirement)",
+            "haircut": null,
+            "nilai": "2.217.177",
+            "nilai_setelah_haircut": "80.335",
+            "keterangan": null
+          }
+        ]
+      },
+      "total_arus_kas_keluar": {
+        "nilai": "10.384.713",
+        "nilai_setelah_haircut": "4.216.835"
+      }
+    },
+    "2. Arus Kas Masuk": {
+      "2.1": {
+        "judul": "Pinjaman dengan Agunan (Secured Lending)",
+        "detail": [
+          {
+            "kode": "header",
+            "komponen": "Agunan tidak digunakan kembali untuk menutupi posisi short nasabah",
+            "haircut": null,
+            "nilai": null,
+            "nilai_setelah_haircut": null,
+            "keterangan": null
+          },
+          {
+            "kode": null,
+            "komponen": "Agunan berupa HQLA Level 1",
+            "haircut": "0%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Reverse repo dengan agunan Surat Berharga Pemerintah, SBI"
+          },
+          {
+            "kode": null,
+            "komponen": "Agunan berupa HQLA Level 2A",
+            "haircut": "15%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Dinihilkan"
+          },
+          {
+            "kode": null,
+            "komponen": "Agunan berupa EBA yang memenuhi persyaratan HQLA Level 2B",
+            "haircut": "25%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Dinihilkan"
+          },
+          {
+            "kode": null,
+            "komponen": "Agunan berupa HQLA Level 2B selain EBA",
+            "haircut": "50%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Dinihilkan"
+          },
+          {
+            "kode": null,
+            "komponen": "Transaksi berupa margin lending namun agunan berupa selain HQLA",
+            "haircut": "50%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Dinihilkan"
+          },
+          {
+            "kode": null,
+            "komponen": "Agunan tidak memenuhi persyaratan sebagaimana tersebut diatas",
+            "haircut": "100%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Dinihilkan"
+          },
+          {
+            "kode": null,
+            "komponen": "Agunan digunakan kembali untuk menutupi posisi short nasabah",
+            "haircut": "0%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Dinihilkan"
+          },
+          {
+            "kode": "subtotal",
+            "komponen": "Jumlah Arus Kas Masuk yang Berasal dari Pinjaman dengan Agunan (Secured Lending)",
+            "haircut": null,
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": null
+          }
+        ]
+      },
+      "2.2": {
+        "judul": "Tagihan berdasarkan Pihak Lawan (Counterparty)",
+        "detail": [
+          {
+            "kode": "2.2.1",
+            "komponen": "Nasabah perorangan",
+            "haircut": "50%",
+            "nilai": "204.021,00",
+            "nilai_setelah_haircut": "102.011",
+            "keterangan": "Kredit dengan kolektibilitas 1 (Lancar), jatuh tempo 1 bulan ke depan dengan debitur perorangan/ritel"
+          },
+          {
+            "kode": "2.2.2",
+            "komponen": "Nasabah Usaha Mikro dan Usaha Kecil",
+            "haircut": "50%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": "Kredit dengan kolektibilitas 1 (Lancar), jatuh tempo 1 bulan ke depan dengan debitur usaha mikro dan usaha kecil"
+          },
+          {
+            "kode": "2.2.3",
+            "komponen": "Lembaga jasa keuangan",
+            "haircut": "100%",
+            "nilai": "29.322,87",
+            "nilai_setelah_haircut": "29.323",
+            "keterangan": "Kredit dengan kolektibilitas 1 (Lancar), jatuh tempo 1 bulan ke depan dengan debitur lembaga jasa keuangan"
+          },
+          {
+            "kode": "2.2.4",
+            "komponen": "Bank Indonesia",
+            "haircut": "100%",
+            "nilai": "1.875,35",
+            "nilai_setelah_haircut": "1.875",
+            "keterangan": null
+          },
+          {
+            "kode": "2.2.5",
+            "komponen": "Lainnya (nasabah korporasi non-keuangan, Pemerintah Pusat, pemerintah negara lain, entitas sektor publik dan bank pembangunan multilateral)",
+            "haircut": "50% dari nilai kontraktual dan/atau 100% dari nilai kontraktual dalam hal tingkat penerimaan berasal dari surat berharga bukan HQLA dengan sisa jangka waktu kurang dari 30 hari.",
+            "nilai": "1.322.752,52",
+            "nilai_setelah_haircut": "661.376",
+            "keterangan": "Kredit dengan kolektibilitas 1 (Lancar), jatuh tempo 1 bulan ke depan dengan debitur lainnya (nasabah korporasi non-keuangan, Pemerintah Pusat, pemerintah negara lain, entitas sektor publik dan bank pembangunan multilateral) dan juga Surat berharga Korporasi lainnya (bukan HQLA) yang jatuh tempo 1 bulan ke depan\n- Kredit Jatuh Tempo : Haircut 50%\n- Surat Berharga : Haircut 100%"
+          },
+          {
+            "kode": "subtotal",
+            "komponen": null,
+            "haircut": null,
+            "nilai": "1.557.972",
+            "nilai_setelah_haircut": "794.585",
+            "keterangan": null
+          }
+        ]
+      },
+      "2.3": {
+        "judul": "Arus Kas Masuk Lainnya",
+        "detail": [
+          {
+            "kode": "2.3.1",
+            "komponen": "Berasal dari transaksi derivatif",
+            "haircut": "100%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": null
+          },
+          {
+            "kode": "2.3.2",
+            "komponen": "Berasal dari tagihan kontraktual lainnya",
+            "haircut": "50%",
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": null
+          },
+          {
+            "kode": "subtotal",
+            "komponen": "Jumlah Arus Kas Masuk Lainnya",
+            "haircut": null,
+            "nilai": "-",
+            "nilai_setelah_haircut": "0",
+            "keterangan": null
+          }
+        ]
+      },
+      "total_arus_kas_masuk": {
+        "nilai": "1.557.972",
+        "nilai_setelah_haircut": "794.585"
+      },
+      "jumlah_arus_kas_masuk_diperhitungkan_lcr": {
+        "nilai": "1.557.972",
+        "nilai_setelah_haircut": "794.585"
+      }
+    },
+    "jumlah_net_cash_out_flow": {
+      "nilai": "8.826.742",
+      "nilai_setelah_haircut": "3.422.250"
+    }
+  }
+}
