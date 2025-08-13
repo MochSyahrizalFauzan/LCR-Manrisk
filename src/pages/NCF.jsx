@@ -1,43 +1,45 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "../components/sidebar";
+import Sidebar from "../components/Sidebar";
 import "../style/Dashboard.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { Accordion } from "react-bootstrap";
 
 export default function NCF() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     fetch("/NCF.json")
       .then((res) => res.json())
       .then((json) => {
-        console.log("JSON loaded:", json);
-        const arusKasKeluar =
-          json["B. Net Cash Outflow (Arus Kas Keluar Bersih)"][
-            "1. Arus Kas Keluar"
-          ];
-
-        let allRows = [];
-        Object.keys(arusKasKeluar).forEach((key) => {
-          const section = arusKasKeluar[key];
-          if (section.detail) {
-            section.detail.forEach((item, index) => {
-              allRows.push({
-                parent: key,
-                kode: `${key}.${index + 1}`,
-                komponen: item.komponen,
-                haircut: item.haircut || 0,
-                nilai: item.nilai || 0,
-                nilai_setelah_haircut:
-                  item.nilai_setelah_haircut || 0,
-              });
+        // Bersihkan haircut dan nilai
+        const cleanedData = {};
+        Object.keys(json["B. Net Cash Outflow (Arus Kas Keluar Bersih)"]).forEach(
+          (sectionName) => {
+            const section = json["B. Net Cash Outflow (Arus Kas Keluar Bersih)"][sectionName];
+            cleanedData[sectionName] = {};
+            Object.keys(section).forEach((key) => {
+              const item = section[key];
+              if (item.detail) {
+                cleanedData[sectionName][key] = item.detail.map((row) => {
+                  const haircutNum = parseFloat(String(row.haircut).replace("%", "")) || 0;
+                  const nilaiNum = row.nilai === "-" ? 0 : parseFloat(row.nilai);
+                  return {
+                    ...row,
+                    haircut: haircutNum,
+                    nilai: nilaiNum,
+                    nilai_setelah_haircut: nilaiNum * (1 - haircutNum / 100),
+                  };
+                });
+              }
             });
           }
-        });
-
-        setData(allRows);
-      });
+        );
+        setData(cleanedData);
+        setLoaded(true);
+      })
+      .catch((err) => console.error(err));
   }, []);
 
   const formatNum = (n) => {
@@ -45,24 +47,19 @@ export default function NCF() {
     return new Intl.NumberFormat("id-ID").format(n);
   };
 
-  const handleNilaiChange = (index, value) => {
-    const updatedData = [...data];
+  const handleNilaiChange = (sectionName, key, index, value) => {
+    const updatedData = { ...data };
     const nilaiBaru = parseFloat(value) || 0;
-    const haircutPersen = parseFloat(updatedData[index].haircut) || 0;
-
-    updatedData[index].nilai = nilaiBaru;
-    updatedData[index].nilai_setelah_haircut =
+    const haircutPersen = updatedData[sectionName][key][index].haircut || 0;
+    updatedData[sectionName][key][index].nilai = nilaiBaru;
+    updatedData[sectionName][key][index].nilai_setelah_haircut =
       nilaiBaru * (1 - haircutPersen / 100);
-
     setData(updatedData);
   };
 
-  // Fungsi render tabel berdasarkan kategori
-  const renderTable = (parentKey) => {
-    const filteredRows = data.filter((row) => row.parent === parentKey);
-    if (filteredRows.length === 0) {
-      return <p className="text-center mb-0">Tidak ada data</p>;
-    }
+  const renderTable = (sectionName, key) => {
+    const rows = data[sectionName][key];
+    if (!rows || rows.length === 0) return <p className="text-center">Tidak ada data</p>;
 
     return (
       <div className="table-responsive">
@@ -70,16 +67,16 @@ export default function NCF() {
           <thead>
             <tr>
               <th>Kode</th>
-              <th style={{ width: "25%" }}>Komponen</th>
+              <th>Komponen</th>
               <th>Haircut (%)</th>
               <th>Nilai (Rp.)</th>
               <th>Nilai Setelah Haircut (Rp.)</th>
             </tr>
           </thead>
           <tbody>
-            {filteredRows.map((row, index) => (
-              <tr key={index}>
-                <td>{row.kode}</td>
+            {rows.map((row, i) => (
+              <tr key={i}>
+                <td>{`${key}.${i + 1}`}</td>
                 <td>{row.komponen}</td>
                 <td>{row.haircut}</td>
                 <td>
@@ -88,10 +85,7 @@ export default function NCF() {
                     className="form-control form-control-sm"
                     value={row.nilai}
                     onChange={(e) =>
-                      handleNilaiChange(
-                        data.indexOf(row),
-                        e.target.value
-                      )
+                      handleNilaiChange(sectionName, key, i, e.target.value)
                     }
                   />
                 </td>
@@ -104,13 +98,14 @@ export default function NCF() {
     );
   };
 
+  if (!loaded) return <p>Memuat data...</p>;
+
   return (
     <div className="dashboard-container">
       <Sidebar />
       <div className="main-content">
         <div className="lcr-header d-flex justify-content-between align-items-center mb-4 p-3 shadow-sm rounded bg-white">
           <h3 className="m-0 fw-bold">LCR BJB Syariah</h3>
-
           <div className="periode d-flex align-items-center gap-2">
             <label className="fw-bold mb-0">Periode </label>
             <div className="input-group input-group-sm custom-month-picker">
@@ -123,15 +118,14 @@ export default function NCF() {
         </div>
 
         <Accordion defaultActiveKey={["0"]} alwaysOpen>
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>1. Arus Kas Keluar</Accordion.Header>
-            <Accordion.Body>{renderTable("lvl1")}</Accordion.Body>
-          </Accordion.Item>
-
-          <Accordion.Item eventKey="1">
-            <Accordion.Header>2. Arus Kas Masuk</Accordion.Header>
-            <Accordion.Body>{renderTable("lvl2")}</Accordion.Body>
-          </Accordion.Item>
+          {Object.keys(data).map((sectionName, i) => (
+            <Accordion.Item key={i} eventKey={String(i)}>
+              <Accordion.Header>{sectionName}</Accordion.Header>
+              <Accordion.Body>
+                {Object.keys(data[sectionName]).map((key) => renderTable(sectionName, key))}
+              </Accordion.Body>
+            </Accordion.Item>
+          ))}
         </Accordion>
       </div>
     </div>
