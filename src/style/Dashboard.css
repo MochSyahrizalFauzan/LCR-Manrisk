@@ -6,10 +6,10 @@
 
 /* Sidebar kiri */
 .sidebar {
-  width: 250px; /* Bisa disesuaikan */
-  background-color: #800000; /* contoh merah tua */
+  width: 250px; 
+  background-color: #800000; 
   color: rgb(255, 255, 255);
-  flex-shrink: 0; /* biar sidebar gak mengecil */
+  flex-shrink: 0;
 }
 
 /* Konten utama */
@@ -118,6 +118,11 @@
   cursor: pointer;
 }
 
+.subtotal td:not(:nth-child(3)):not(:nth-child(4)):not(:nth-child(5)) {
+  text-align: left;
+}
+
+
 .toggle-btn:hover {
   background-color: #ce0b0b;
 }
@@ -215,6 +220,8 @@ table input[type="number"] {
 .lcr-table {
   font-size: 14px;
   border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
 }
 
 .lcr-table thead th {
@@ -251,7 +258,7 @@ table input[type="number"] {
 /* Kolom haircut (%) */
 .lcr-table td:nth-child(3),
 .lcr-table th:nth-child(3) {
-  width: 5%;
+  width:7%;
   text-align: center;
 }
 
@@ -266,18 +273,18 @@ table input[type="number"] {
 
 /* Input nilai */
 .lcr-input-nilai {
-  width: 100%;
-  padding: 4px 6px;
+  width: 12%;
+  outline: none;
+  background-color: #ffffff;
+  color: black;
   font-size: 13px;
   text-align: center;
   border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.lcr-input-nilai:focus {
-  outline: none;
-  border-color: #b30000;
-  box-shadow: 0 0 3px rgba(179, 0, 0, 0.5);
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
 }
 
 

@@ -10,10 +10,9 @@ export default function NCF() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    fetch("/NCF.json")
+    fetch("/Data/NCF.json")
       .then((res) => res.json())
       .then((json) => {
-        // Bersihkan haircut dan nilai
         const cleanedData = {};
         Object.keys(json["B. Net Cash Outflow (Arus Kas Keluar Bersih)"]).forEach(
           (sectionName) => {
@@ -62,36 +61,58 @@ export default function NCF() {
     if (!rows || rows.length === 0) return <p className="text-center">Tidak ada data</p>;
 
     return (
-      <div className="table-responsive">
+      <div className="table-responsive mb-3">
         <table className="table table-bordered lcr-table mb-0">
           <thead>
             <tr>
-              <th>Kode</th>
+              <th>No</th>
               <th>Komponen</th>
               <th>Haircut (%)</th>
               <th>Nilai (Rp.)</th>
               <th>Nilai Setelah Haircut (Rp.)</th>
+              <th>Keterangan</th>
             </tr>
           </thead>
           <tbody>
-            {rows.map((row, i) => (
-              <tr key={i}>
-                <td>{`${key}.${i + 1}`}</td>
-                <td>{row.komponen}</td>
-                <td>{row.haircut}</td>
-                <td>
-                  <input
-                    type="number"
-                    className="form-control form-control-sm"
-                    value={row.nilai}
-                    onChange={(e) =>
-                      handleNilaiChange(sectionName, key, i, e.target.value)
-                    }
-                  />
-                </td>
-                <td>{formatNum(row.nilai_setelah_haircut)}</td>
-              </tr>
-            ))}
+            {rows.map((row, i) => {
+              const isSubtotal =
+                String(row.komponen || "").toLowerCase().includes("subtotal") ||
+                String(row.kode || "").toLowerCase().includes("subtotal");
+
+              return (
+                <tr className="subtotal"
+                  key={i}
+                  style={
+                    isSubtotal
+                      ? { fontWeight: "bold", backgroundColor: "#5e5d5dff" }
+                      : {}
+                  }
+                >
+                  {isSubtotal ? (
+                    <>
+                      <td colSpan={3}>{row.komponen}</td>
+                      <td>{formatNum(row.nilai)}</td>
+                      <td>{formatNum(row.nilai_setelah_haircut)}</td>
+                    </>
+                  ) : (
+                    <>
+                      <td>{`${key}.${i + 1}`}</td>
+                      <td>{row.komponen}</td>
+                      <td>{row.haircut}</td>
+                      <td>
+                        <input
+                          type="number" className="lcr-input-nilai" value={row.nilai}
+                          onChange={(e) =>
+                            handleNilaiChange(sectionName, key, i, e.target.value)
+                          } />
+                      </td>
+                      <td>{formatNum(row.nilai_setelah_haircut)}</td>
+                      <td>{row.keterangan}</td>
+                    </>
+                  )}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
@@ -122,7 +143,9 @@ export default function NCF() {
             <Accordion.Item key={i} eventKey={String(i)}>
               <Accordion.Header>{sectionName}</Accordion.Header>
               <Accordion.Body>
-                {Object.keys(data[sectionName]).map((key) => renderTable(sectionName, key))}
+                {Object.keys(data[sectionName]).map((key) =>
+                  renderTable(sectionName, key)
+                )}
               </Accordion.Body>
             </Accordion.Item>
           ))}

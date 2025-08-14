@@ -97,7 +97,7 @@ export default function LCR() {
             <tr>
               <th>No</th>
               <th>Komponen</th>
-              <th>Hair Cut / Run Off Rate</th>
+              <th>Hair Cut</th>
               <th>Nilai (Rp.)</th>
               <th>Nilai Setelah Haircut (Rp.)</th>
               <th>Keterangan</th>
@@ -113,7 +113,7 @@ export default function LCR() {
                   <td className="text-center">{row.haircut}%</td>
                   <td>
                     <input
-                      type="text"
+                      type="number"
                       className="form-control text-end"
                       value={values[id]}
                       onChange={(e) => handleChange(id, e.target.value)}
@@ -126,9 +126,9 @@ export default function LCR() {
             })}
           </tbody>
           <tfoot>
-            <tr className="total-row">
+            <tr className="totalrow">
               <td colSpan="3" className="text-end fw-bold">
-                Jumlah {levelKey.toUpperCase()}
+                Jumlah HQLA {levelKey.toUpperCase()}
               </td>
               <td className="text-end fw-bold">{formatNum(totals[levelKey].input)}</td>
               <td className="text-end fw-bold">{formatNum(totals[levelKey].after)}</td>
@@ -174,7 +174,6 @@ export default function LCR() {
           </Accordion.Item>
         </Accordion>
 
-        {/* Grand Totals */}
         <div className="card mb-4 mt-4 shadow-sm grand-totals-card" style={{ backgroundColor: "#fff" }}>
           <div className="card-body d-flex justify-content-between align-items-center">
             <div>
@@ -196,7 +195,6 @@ export default function LCR() {
           </div>
         </div>
 
-        
       </div>
     </div>
   );
