@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(0, 0, 0, 0.87);
-  background-color: #ffffff;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #faf8f8;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,8 +24,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: block;
-  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
 }
@@ -65,4 +63,107 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* ===== Halaman LCR ===== */
+.lcr-page {
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+  background: #f4f6f9; /* abu-abu soft */
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.lcr-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #213547;
+  text-align: center;
+  margin-bottom: 1rem;
+  border-bottom: 3px solid #f04343;
+  padding-bottom: 0.5rem;
+}
+
+.lcr-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.lcr-section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lcr-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.section-title {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #2d3e50;
+  border-left: 5px solid #da1e11;
+  padding-left: 0.75rem;
+}
+
+/* styling tabel LCR */
+.lcr-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  table-layout: fixed;
+}
+
+.lcr-table th, .lcr-table td {
+  border: 2px solid #c0c0c0;
+  padding: 0.75rem;
+  text-align: left;
+  font-size: 0.95rem;
+  overflow: hidden;       /* supaya teks tidak keluar */
+}
+
+.lcr-table th {
+  background: #b32911;
+  color: white;
+  text-align: center;
+
+}
+
+.lcr-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.lcr-table tr:hover {
+  background: #eef2ff;
+}
+
+.lcr-table th:nth-child(1),
+.lcr-table td:nth-child(1) {
+  width: 5%; /* kolom 1 lebar 5% */
+}
+
+.lcr-table th:nth-child(2),
+.lcr-table td:nth-child(2) {
+  width: 25%; 
+}
+
+.lcr-table th:nth-child(3),
+.lcr-table td:nth-child(3) {
+  width: 5%; 
+}
+
+.lcr-table th:nth-child(4),
+.lcr-table td:nth-child(4) {
+  width: 12%; 
+}
+
+.lcr-table th:nth-child(5),
+.lcr-table td:nth-child(5) {
+  width: 12%; 
 }

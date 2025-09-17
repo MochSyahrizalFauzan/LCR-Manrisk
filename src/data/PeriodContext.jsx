@@ -1,20 +1,17 @@
-// src/data/PeriodContext.js
-import React, { createContext, useContext, useState } from "react";
+// data/PeriodContext.jsx
+import { createContext, useContext, useState } from "react";
 
-// Buat context
 const PeriodContext = createContext();
 
-// Provider untuk membungkus App
 export const PeriodProvider = ({ children }) => {
-  const [month, setMonth] = useState("2025-08"); // default value
+  const [periode, setPeriode] = useState("");
+  const [headerId, setHeaderId] = useState(null);
+
   return (
-    <PeriodContext.Provider value={{ month, setMonth }}>
+    <PeriodContext.Provider value={{ periode, setPeriode, headerId, setHeaderId }}>
       {children}
     </PeriodContext.Provider>
   );
 };
 
-// Hook custom biar lebih rapi saat dipakai di komponen
-export const usePeriod = () => {
-  return useContext(PeriodContext);
-};
+export const usePeriod = () => useContext(PeriodContext);

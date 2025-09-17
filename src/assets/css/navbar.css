@@ -1,30 +1,35 @@
 .navbar {
     position: fixed;
-    width: 30%;
+    width: 14%;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 60px;
-    padding: 14px 36px;
+    border-radius: 80px;
+    padding: 5px 15px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1px;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px); 
-    box-shadow:
-        0 12px 24px rgba(0, 0, 0, 0.15),  /* bayangan utama */
-        0 4px 6px rgba(0, 0, 0, 0.1);    /* bayangan tambahan */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    justify-content: center;
+    gap: 18px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    /*bayanganluar+glow*/box-shadow:       0 8px 16px rgba(0, 0, 0, 0.12),     /* soft shadow */      0 16px 38px rgba(0, 0, 0, 0.20),    /* main shadow */      0 12px 20px rgba(0, 0, 0, 0.10),    /* secondary */      0 0 12px rgba(37, 99, 235, 0.4),    /* glow biru */      0 0 18px rgba(230, 57, 70, 0.3);
+    /*glowmerah*/transition: transform 0.3s ease, box-shadow 0.3s ease;
     z-index: 1000;
+    -webkit-border-radius: 80px;
+    -moz-border-radius: 80px;
+    -ms-border-radius: 80px;
+    -o-border-radius: 80px;
 }
 
 /* Efek saat hover seluruh navbar */
 .navbar:hover {
-    box-shadow:
-        0 12px 28px rgba(0, 0, 0, 0.2),
-        0 6px 12px rgba(0, 0, 0, 0.15);
-    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 
+      0 10px 22px rgba(0, 0, 0, 0.18), 
+      0 20px 45px rgba(0, 0, 0, 0.25), 
+      0 14px 28px rgba(0, 0, 0, 0.15),
+      0 0 25px rgba(255, 0, 21, 0.45);  /* glow merah lebih kuat */
+
+    transform: translateX(-50%) translateY(-3px);
 }
 
 
@@ -75,12 +80,11 @@
 .navbar a:hover {
   transform: translateY(-2px);
       box-shadow:
-        0 12px 28px rgba(0, 0, 0, 0.2),
-        0 6px 12px rgba(0, 0, 0, 0.15);
+        0 18px 38px rgba(0, 0, 0, 0.2),
+        0 16px 22px rgba(0, 0, 0, 0.15);
   background: rgba(230, 57, 70, 0.1);
   color: #e63946;
 }
-
 
 /* Link dasar */
 .nav-item {
