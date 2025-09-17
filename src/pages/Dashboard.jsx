@@ -1,5 +1,6 @@
 import React from 'react';
 import Sidebar from '../components/sidebar';
+import Navbar from '../components/Navbar';
 import '../style/Dashboard.css';
 
 // Chart.js
@@ -18,11 +19,14 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const Dashboard = () => {
   return (
+    <>
+      {/* <Navbar /> */}
+    
     <div className="dashboard">
-      <Sidebar />
+      {/* <Sidebar /> */}
       <div className="main-content">
         <div className="header">
-          <h1>Welcome Back!</h1>
+          <h1>Welcome!</h1>
           <p>Sistem Informasi Laporan Keuangan Bjb Syariah</p>
         </div>
 
@@ -39,6 +43,7 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

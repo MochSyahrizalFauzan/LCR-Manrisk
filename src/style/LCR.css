@@ -61,6 +61,7 @@
   background-color: #f8f9fa; 
   display: flex;
   flex-direction: column;
+  padding-bottom: 100px;
 }
 
 /* Periode input */
@@ -76,12 +77,16 @@
   font-weight: bold;
 }
 
-/* Biar tabel & card tidak terlalu ke kiri */
 .main-content > * {
   max-width: 100%;
 }
 
 .grand-totals-card {
-  bottom: 0; /* menempel di bagian bawah */
-  z-index: 50;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  background-color: white;
+  justify-content: space-between;
+  align-items: center;
+
 }

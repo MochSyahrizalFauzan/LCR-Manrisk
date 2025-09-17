@@ -1,8 +1,8 @@
+// src/pages/NCF.jsx
 import React, { useState, useEffect } from "react";
-import Sidebar from "../components/Sidebar";
+import Navbar from "../components/Navbar";
 import "../style/Dashboard.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { FaRegCalendarAlt } from "react-icons/fa";
 import { Accordion } from "react-bootstrap";
 
 export default function NCF() {
@@ -16,19 +16,23 @@ export default function NCF() {
         const cleanedData = {};
         Object.keys(json["B. Net Cash Outflow (Arus Kas Keluar Bersih)"]).forEach(
           (sectionName) => {
-            const section = json["B. Net Cash Outflow (Arus Kas Keluar Bersih)"][sectionName];
+            const section =
+              json["B. Net Cash Outflow (Arus Kas Keluar Bersih)"][sectionName];
             cleanedData[sectionName] = {};
             Object.keys(section).forEach((key) => {
               const item = section[key];
               if (item.detail) {
                 cleanedData[sectionName][key] = item.detail.map((row) => {
-                  const haircutNum = parseFloat(String(row.haircut).replace("%", "")) || 0;
-                  const nilaiNum = row.nilai === "-" ? 0 : parseFloat(row.nilai);
+                  const haircutNum =
+                    parseFloat(String(row.haircut).replace("%", "")) || 0;
+                  const nilaiNum =
+                    row.nilai === "-" ? 0 : parseFloat(row.nilai);
                   return {
                     ...row,
                     haircut: haircutNum,
                     nilai: nilaiNum,
-                    nilai_setelah_haircut: nilaiNum * (1 - haircutNum / 100),
+                    nilai_setelah_haircut:
+                      nilaiNum * (1 - haircutNum / 100),
                   };
                 });
               }
@@ -58,7 +62,8 @@ export default function NCF() {
 
   const renderTable = (sectionName, key) => {
     const rows = data[sectionName][key];
-    if (!rows || rows.length === 0) return <p className="text-center">Tidak ada data</p>;
+    if (!rows || rows.length === 0)
+      return <p className="text-center">Tidak ada data</p>;
 
     return (
       <div className="table-responsive mb-3">
@@ -76,11 +81,14 @@ export default function NCF() {
           <tbody>
             {rows.map((row, i) => {
               const isSubtotal =
-                String(row.komponen || "").toLowerCase().includes("subtotal") ||
+                String(row.komponen || "")
+                  .toLowerCase()
+                  .includes("subtotal") ||
                 String(row.kode || "").toLowerCase().includes("subtotal");
 
               return (
-                <tr className="subtotal"
+                <tr
+                  className={isSubtotal ? "subtotal" : ""}
                   key={i}
                   style={
                     isSubtotal
@@ -93,6 +101,7 @@ export default function NCF() {
                       <td colSpan={3}>{row.komponen}</td>
                       <td>{formatNum(row.nilai)}</td>
                       <td>{formatNum(row.nilai_setelah_haircut)}</td>
+                      <td>{row.keterangan || "-"}</td>
                     </>
                   ) : (
                     <>
@@ -101,13 +110,16 @@ export default function NCF() {
                       <td>{row.haircut}</td>
                       <td>
                         <input
-                          type="number" className="lcr-input-nilai" value={row.nilai}
+                          type="number"
+                          className="lcr-input-nilai"
+                          value={row.nilai}
                           onChange={(e) =>
                             handleNilaiChange(sectionName, key, i, e.target.value)
-                          } />
+                          }
+                        />
                       </td>
                       <td>{formatNum(row.nilai_setelah_haircut)}</td>
-                      <td>{row.keterangan}</td>
+                      <td>{row.keterangan || "-"}</td>
                     </>
                   )}
                 </tr>
@@ -119,38 +131,29 @@ export default function NCF() {
     );
   };
 
-  if (!loaded) return <p>Memuat data...</p>;
+  if (!loaded) return <p className="text-center mt-4">Memuat data...</p>;
 
   return (
-    <div className="dashboard-container">
-      <Sidebar />
-      <div className="main-content">
-        <div className="lcr-header d-flex justify-content-between align-items-center mb-4 p-3 shadow-sm rounded bg-white">
-          <h3 className="m-0 fw-bold">LCR BJB Syariah</h3>
-          <div className="periode d-flex align-items-center gap-2">
-            <label className="fw-bold mb-0">Periode </label>
-            <div className="input-group input-group-sm custom-month-picker">
-              <input type="month" className="form-control" />
-              <span className="input-group-text">
-                <FaRegCalendarAlt />
-              </span>
-            </div>
-          </div>
-        </div>
+    <>
+      {/* <Navbar /> */}
+      <div className="dashboard-container">
+        <div className="main-content">
+          <h3 className="fw-bold mb-4">Net Cash Outflow (NCF)</h3>
 
-        <Accordion defaultActiveKey={["0"]} alwaysOpen>
-          {Object.keys(data).map((sectionName, i) => (
-            <Accordion.Item key={i} eventKey={String(i)}>
-              <Accordion.Header>{sectionName}</Accordion.Header>
-              <Accordion.Body>
-                {Object.keys(data[sectionName]).map((key) =>
-                  renderTable(sectionName, key)
-                )}
-              </Accordion.Body>
-            </Accordion.Item>
-          ))}
-        </Accordion>
+          <Accordion defaultActiveKey={["0"]} alwaysOpen>
+            {Object.keys(data).map((sectionName, i) => (
+              <Accordion.Item key={i} eventKey={String(i)}>
+                <Accordion.Header>{sectionName}</Accordion.Header>
+                <Accordion.Body>
+                  {Object.keys(data[sectionName]).map((key, idx) => (
+                    <div key={idx}>{renderTable(sectionName, key)}</div>
+                  ))}
+                </Accordion.Body>
+              </Accordion.Item>
+            ))}
+          </Accordion>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,0 +1,108 @@
+.navbar {
+    position: fixed;
+    width: 30%;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 60px;
+    padding: 14px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px); 
+    box-shadow:
+        0 12px 24px rgba(0, 0, 0, 0.15),  /* bayangan utama */
+        0 4px 6px rgba(0, 0, 0, 0.1);    /* bayangan tambahan */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000;
+}
+
+/* Efek saat hover seluruh navbar */
+.navbar:hover {
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.2),
+        0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateX(-50%) translateY(-2px);
+}
+
+
+/* Untuk layar kecil */
+@media (max-width: 768px) {
+  .navbar {
+    width: 70%;
+    padding: 5px;
+  }
+  .navbar a {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}
+
+/* Untuk layar sangat kecil (HP) */
+@media (max-width: 480px) {
+  .navbar {
+    width: 90%;
+  }
+  .navbar a {
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 500;
+  color: #555;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
+
+.navbar a.active {
+  background-color: #e53935; /* merah */
+  font-weight: bold;
+  color: #fff;
+}
+
+.navbar a:hover {
+  transform: translateY(-2px);
+      box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.2),
+        0 6px 12px rgba(0, 0, 0, 0.15);
+  background: rgba(230, 57, 70, 0.1);
+  color: #e63946;
+}
+
+
+/* Link dasar */
+.nav-item {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #374151; /* abu-abu tua */
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-item:hover {
+  background-color: #f3f4f6; /* abu hover */
+}
+
+/* Link aktif */
+.nav-item.active {
+  background-color: #2563eb; /* biru */
+  color: white;
+}
+
+/* Selector periode */
+.periode-selector select {
+  cursor: pointer;
+}

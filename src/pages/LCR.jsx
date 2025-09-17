@@ -1,164 +1,307 @@
-import React, { useState, useMemo } from "react";
-import Sidebar from "../components/sidebar";
+// src/pages/LCR.jsx
+import React, { useState, useMemo, useEffect } from "react";
+import { usePeriod } from "../data/PeriodContext";
 import Accordion from "react-bootstrap/Accordion";
-import "../style/LCR.css"; 
+import "../style/LCR.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { FaRegCalendarAlt } from "react-icons/fa";
+import axios from "axios";
 
-// Data konstan
-const DATA = {
-  lvl1: [
-    { no: '1.1', comp: 'Kas dan Setara Kas', haircut: 0, note: 'Posisi Kas' },
-    { no: '1.2', comp: 'Total penempatan pada Bank Indonesia', haircut: 0, note: 'Total Penempatan pada Bank Indonesia (termasuk GWM Primer)' },
-    { no: '1.2.1', comp: 'Bagian dari penempatan pada Bank Indonesia yang dapat ditarik saat kondisi stres', haircut: 0, note: '' },
-    { no: '1.3', comp: 'Surat berharga yang memenuhi kriteria Pasal 10 ayat 1 huruf c :', haircut: 0, note: 'Total Surat Berharga Pemerintah, Sertifikat Bank Indonesia' },
-    { no: '1.3.1', comp: 'Diterbitkan atau dijamin pemerintah negara lain', haircut: 0, note: 'Dinihilkan' },
-    { no: '1.3.2', comp: 'Diterbitkan atau dijamin oleh bank sentral negara lain', haircut: 0, note: '' },
-    { no: '1.3.3', comp: 'Diterbitkan atau dijamin oleh entitas sektor publik', haircut: 0, note: '' },
-    { no: '1.3.4', comp: 'Diterbitkan atau dijamin oleh bank pembangunan multilateral', haircut: 0, note: '' },
-    { no: '1.3.5', comp: 'Diterbitkan atau dijamin oleh lembaga internasional (a.l BIS, IMF, ECB and European Community)', haircut: 0, note: '' },
-    { no: '1.4', comp: 'Surat berharga yang diterbitkan Pemerintah Pusat dan Bank Indonesia dalam rupiah dan valuta asing', haircut: 0, note: 'Total Surat Berharga Pemerintah, Sertifikat Bank Indonesia dalam denom Rupiah dan Valuta Asing' },
-    { no: '1.5', comp: 'Surat berharga yang diterbitkan oleh pemerintah dan bank sentral negara lain dalam valuta asing dengan bobot risiko lebih dari 0% yang memenuhi kriteria Pasal 10 ayat (1) huruf e', haircut: 0, note: 'DInihilkan' },
-  ],
-  lvl2a: [
-    { no: '2.1', comp: 'Surat berharga yang memenuhi kriteria Pasal 11 ayat (1) huruf a :', haircut: 15, note: 'Dininilkan sesuai kriteria' },
-    { no: '2.1.1', comp: 'Diterbitkan atau dijamin pemerintah negara lain', haircut: 15, note: 'Dininilkan sesuai kriteria' },
-    { no: '2.1.2', comp: 'Diterbitkan atau dijamin oleh bank sentral negara lain', haircut: 15, note: '' },
-    { no: '2.1.3', comp: 'Diterbitkan atau dijamin oleh entitas sektor publik', haircut: 15, note: '' },
-    { no: '2.1.4', comp: 'Diterbitkan atau dijamin oleh bank pembangunan multilateral', haircut: 15, note: '' },
-    { no: '2.2', comp: 'Surat berharga berupa surat utang yang diterbitkan oleh korporasi non-keuangan yang memenuhi kriteria Pasal 11 ayat (1) huruf b', haircut: 15, note: 'Surat Berharga Korporasi Bukan Lembaga Keuangan' },
-    { no: '2.3', comp: 'Surat berharga berbentuk covered bonds yang tidak diterbitkan oleh Bank pelapor atau pihak yang terafiliasi dengan Bank pelapor yang memenuhi kriteria Pasal 11 ayat (1) huruf b', haircut: 15, note: '' },
-  ],
-  lvl2b: [
-    { no: '3.1', comp: 'Efek beragun aset (EBA) berupa rumah tinggal yang memenuhi kriteria Pasal 12 ayat (1) huruf a', haircut: 25, note: 'Efek beragun aset dengan rating minimal AA' },
-    { no: '3.2', comp: 'Surat berharga berupa surat utang yang diterbitkan oleh korporasi yang memenuhi kriteria Pasal 12 ayat (1) huruf b', haircut: 50, note: 'Surat Berharga Korporasi Bukan Lembaga Keuangan dengan rating obligasi minimal BBB- sd A+' },
-    { no: '3.3', comp: 'Saham biasa yang dimiliki perusahaan anak bukan Bank yang memenuhi kriteria Pasal 12 ayat (1) huruf c', haircut: 50, note: 'Dinihilkan' },
-    { no: '3.4', comp: 'Surat berharga pemerintah atau bank sentral negara lain dengan peringkat paling tinggi BBB+ dan paling rendah BBB-', haircut: 50, note: 'Dinihilkan' },
-  ]
-};
-
-// Helper format rupiah
-function formatNum(n) {
+const formatNum = (n) => {
   if (!n || isNaN(n)) return "-";
   return new Intl.NumberFormat("id-ID").format(n);
-}
+};
 
 export default function LCR() {
-  const [values, setValues] = useState(() => {
-    const map = {};
-    Object.keys(DATA).forEach((level) =>
-      DATA[level].forEach((_, idx) => (map[`${level}-${idx}`] = ""))
-    );
-    return map;
-  });
+  const { month } = usePeriod();
+  const [DATA, setDATA] = useState({ lvl1: [], lvl2a: [], lvl2b: [] });
+  const [values, setValues] = useState({});
 
-  function handleChange(id, val) {
-    const cleaned = String(val).replace(/[^\d]/g, "");
-    setValues((prev) => ({ ...prev, [id]: cleaned }));
-  }
+// Load master data
+useEffect(() => {
+  axios.get("http://localhost:5000/hqla_master")
+    .then((res) => {
+      const grouped = { lvl1: [], lvl2a: [], lvl2b: [] };
+      res.data.forEach((row) => {
+        if (row.level === "Level 1") grouped.lvl1.push(row);
+        if (row.level === "Level 2A") grouped.lvl2a.push(row);
+        if (row.level === "Level 2B") grouped.lvl2b.push(row);
+      });
+      setDATA(grouped);
 
-  function computeAfter(id) {
-    const raw = parseInt(values[id] || "0", 10) || 0;
-    const [lvl, idx] = id.split("-");
-    const cfg = DATA[lvl][parseInt(idx, 10)];
-    const haircutRate = cfg.haircut / 100;
-    return raw ? formatNum(Math.round(raw * (1 - haircutRate))) : "-";
-  }
+      const initialValues = {};
+      Object.keys(grouped).forEach((level) =>
+        grouped[level].forEach((row) => {
+          initialValues[row.id] = "";
+        })
+      );
+      setValues(initialValues);
+    })
+    .catch((err) => console.error("Error loading master:", err));
+}, []);
 
-  const totals = useMemo(() => {
-    const result = {
-      lvl1: { input: 0, after: 0 },
-      lvl2a: { input: 0, after: 0 },
-      lvl2b: { input: 0, after: 0 },
-      grand: { input: 0, after: 0 }
-    };
+// Load existing data by periode
+useEffect(() => {
+  if (!month) return;
+  if (!DATA.lvl1.length && !DATA.lvl2a.length && !DATA.lvl2b.length) return;
 
-    Object.entries(values).forEach(([id, raw]) => {
-      const num = parseInt(raw || "0", 10) || 0;
-      const [lvl, idx] = id.split("-");
-      const cfg = DATA[lvl][parseInt(idx, 10)];
-      const after = Math.round(num * (1 - cfg.haircut / 100));
+  axios.get(`http://localhost:5000/api/lcr_header/${month}`)
+    .then((res) => {
+      console.log("DEBUG existing response:", res.data);
+
+      const rows = res.data?.data || [];
+      if (!rows.length) {
+        setValues({});  
+        return;
+      }
+
+      const existingValues = {};
+      rows.forEach((row) => {
+        existingValues[row.hqla_master_id] = row.nilai_awal;
+      });
+
+      setValues(existingValues); 
+      console.log("SET VALUES:", existingValues);
+    })
+    .catch((err) => console.error("Error loading existing data:", err));
+}, [month, DATA.lvl1.length, DATA.lvl2a.length, DATA.lvl2b.length]);
+
+// handleChange → pakai hqla_master_id sebagai key
+const handleChange = (masterId, val) => {
+  const cleaned = String(val).replace(/[^\d]/g, "");
+  setValues((prev) => ({ ...prev, [masterId]: cleaned }));
+};
+
+// Hitung nilai setelah haircut
+const computeAfter = (row) => {
+  const raw = Number(values[row.id] || 0);
+  const haircutRate = row?.haircut_rate ? row.haircut_rate / 100 : 0;
+  return raw > 0 ? formatNum(Math.round(raw * (1 - haircutRate))) : "-";
+};
+
+// Hitung total
+const totals = useMemo(() => {
+  const result = {
+    lvl1: { input: 0, after: 0 },
+    lvl2a: { input: 0, after: 0 },
+    lvl2b: { input: 0, after: 0 },
+    grand: { input: 0, after: 0 },
+  };
+
+  ["lvl1", "lvl2a", "lvl2b"].forEach((lvl) => {
+    DATA[lvl]?.forEach((row) => {
+      if (row.row_type === "subtotal" || row.row_type === "total") return;
+      const num = Number(values[row.id] || 0);
+      const after = Math.round(num * (1 - (row.haircut_rate || 0) / 100));
       result[lvl].input += num;
       result[lvl].after += after;
     });
+  });
 
-    // Hitung grand total
-    result.grand.input = result.lvl1.input + result.lvl2a.input + result.lvl2b.input;
-    result.grand.after = result.lvl1.after + result.lvl2a.after + result.lvl2b.after;
+  result.grand.input =
+    result.lvl1.input + result.lvl2a.input + result.lvl2b.input;
+  result.grand.after =
+    result.lvl1.after + result.lvl2a.after + result.lvl2b.after;
 
-    return result;
-  }, [values]);
+  return result;
+}, [values, DATA]);
 
-  function renderTable(levelKey) {
-    return (
-      <div className="table-responsive">
-        <table className="table table-bordered lcr-table mb-0">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Komponen</th>
-              <th>Hair Cut</th>
-              <th>Nilai (Rp.)</th>
-              <th>Nilai Setelah Haircut (Rp.)</th>
-              <th>Keterangan</th>
-            </tr>
-          </thead>
-          <tbody>
-            {DATA[levelKey].map((row, i) => {
-              const id = `${levelKey}-${i}`;
+
+// Simpan ke backend
+// Simpan ke backend
+const handleSave = async () => {
+  if (!month) {
+    alert("Periode harus diisi sebelum menyimpan data!");
+    return;
+  }
+
+  const periodeParam = /^\d{4}-\d{2}$/.test(month) ? `${month}-01` : month;
+
+  let preparedData = [];
+  ["lvl1", "lvl2a", "lvl2b"].forEach((level) => {
+    DATA[level]?.forEach((row) => {
+      if (row.row_type === "subtotal" || row.row_type === "total") return;
+
+      const nilaiAwal = Number(values[row.id] || 0);
+      const nilaiAfter = Math.round(
+        nilaiAwal * (1 - (row.haircut_rate || 0) / 100)
+      );
+
+      preparedData.push({
+        hqla_master_id: row.id,
+        nilai_awal: isNaN(nilaiAwal) ? 0 : nilaiAwal,
+        nilai_setelah_haircut: isNaN(nilaiAfter) ? 0 : nilaiAfter,
+      });
+    });
+  });
+
+  // Buang duplikat berdasarkan hqla_master_id
+  preparedData = preparedData.reduce((acc, curr) => {
+    if (!acc.some(item => item.hqla_master_id === curr.hqla_master_id)) {
+      acc.push(curr);
+    }
+    return acc;
+  }, []);
+
+  try {
+    const saveRes = await fetch("http://localhost:5000/api/hqla_data", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        periode: periodeParam,
+        data: preparedData,
+      }),
+    });
+
+    if (saveRes.ok) {
+      alert("Data berhasil disimpan!");
+    } else {
+      const errData = await saveRes.json();
+      alert("Gagal menyimpan data: " + (errData?.error || "Unknown error"));
+    }
+  } catch (err) {
+    console.error("Error saat menyimpan:", err);
+    alert("Terjadi error saat menyimpan data.");
+  }
+};
+
+
+
+const renderTable = (levelKey) => {
+  // Ambil data dari props/DB
+  let rows = [...(DATA[levelKey] || [])];
+
+  // Urutkan: semua row normal/subheader/subtotal sesuai kode, total selalu terakhir
+  rows.sort((a, b) => {
+    if (a.row_type === "total") return 1;
+    if (b.row_type === "total") return -1;
+    if (a.row_type === "subtotal" && b.row_type !== "subtotal") return 1;
+    if (b.row_type === "subtotal" && a.row_type !== "subtotal") return -1;
+    return a.kode.localeCompare(b.kode, undefined, { numeric: true });
+  });
+
+  // Hitung subtotal untuk 1 level
+  const computeSubtotal = (rows) => {
+    let subtotalInput = 0;
+    let subtotalAfter = 0;
+    rows.forEach((row) => {
+      if (row.row_type === "item") {
+        const val = parseFloat(values[row.id] || 0);
+        subtotalInput += val;
+        subtotalAfter += val * (1 - (row.haircut_rate || 0) / 100);
+      }
+    });
+    return { input: subtotalInput, after: subtotalAfter };
+  };
+
+  // Hitung grand total seluruh level
+  const computeGrandTotal = () => {
+    let totalInput = 0;
+    let totalAfter = 0;
+    Object.values(DATA).forEach((levelRows) => {
+      levelRows.forEach((row) => {
+        if (row.row_type === "item") {
+          const val = parseFloat(values[row.id] || 0);
+          totalInput += val;
+          totalAfter += val * (1 - (row.haircut_rate || 0) / 100);
+        }
+      });
+    });
+    return { input: totalInput, after: totalAfter };
+  };
+
+  return (
+    <div className="table-responsive">
+      <table className="table table-bordered lcr-table mb-0">
+        <thead>
+          <tr>
+            <th>Kode</th>
+            <th>Komponen</th>
+            <th>Hair Cut</th>
+            <th>Nilai (Rp.)</th>
+            <th>Nilai Setelah Haircut (Rp.)</th>
+            <th>Keterangan</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => {
+            const id = `${levelKey}-${i}`;
+
+            // === Subheader ===
+            if (row.row_type === "subheader") {
               return (
-                <tr key={id}>
-                  <td>{row.no}</td>
-                  <td>{row.comp}</td>
-                  <td className="text-center">{row.haircut}%</td>
-                  <td>
-                    <input
-                      type="number"
-                      className="form-control text-end"
-                      value={values[id]}
-                      onChange={(e) => handleChange(id, e.target.value)}
-                    />
-                  </td>
-                  <td className="text-end">{computeAfter(id)}</td>
-                  <td>{row.note}</td>
+                <tr key={id} className="table-light fw-bold">
+                  <td className="text-center">{row.kode}</td>
+                  <td colSpan="5">{row.nama_komponen}</td>
                 </tr>
               );
-            })}
-          </tbody>
-          <tfoot>
-            <tr className="totalrow">
-              <td colSpan="3" className="text-end fw-bold">
-                Jumlah HQLA {levelKey.toUpperCase()}
-              </td>
-              <td className="text-end fw-bold">{formatNum(totals[levelKey].input)}</td>
-              <td className="text-end fw-bold">{formatNum(totals[levelKey].after)}</td>
-              <td></td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    );
-  }
+            }
+
+            // === Subtotal ===
+            if (row.row_type === "subtotal") {
+              const subtotal = computeSubtotal(rows);
+              return (
+                <tr key={id} className="table-secondary fw-bold">
+                  <td className="text-center">{row.kode}</td>
+                  <td>{row.nama_komponen}</td>
+                  <td></td>
+                  <td className="text-end">{formatNum(subtotal.input)}</td>
+                  <td className="text-end">{formatNum(subtotal.after)}</td>
+                  <td></td>
+                </tr>
+              );
+            }
+
+            // === Total ===
+            if (row.row_type === "total") {
+              const grand = computeGrandTotal();
+              return (
+                <tr key={id} className="table-dark fw-bold">
+                  <td className="text-center">{row.kode}</td>
+                  <td>{row.nama_komponen}</td>
+                  <td></td>
+                  <td className="text-end">{formatNum(grand.input)}</td>
+                  <td className="text-end">{formatNum(grand.after)}</td>
+                  <td></td>
+                </tr>
+              );
+            }
+
+            // === Default item ===
+            return (
+              <tr key={row.id}>
+                <td className="text-center">{row.kode}</td>
+                <td>{row.nama_komponen}</td>
+                <td className="text-center">{row.haircut_rate}%</td>
+                <td>
+                  <input
+                    type="number"
+                    className="form-control text-end"
+                    value={values[row.id] ?? ""}
+                    onChange={(e) => handleChange(row.id, e.target.value)}
+                    min="0"
+                  />
+                </td>
+                <td className="text-end">{computeAfter(row)}</td>
+                <td>{row.keterangan}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+
 
   return (
     <div className="dashboard">
-      <Sidebar />
       <div className="main-content p-4">
         <div className="lcr-header d-flex justify-content-between align-items-center mb-4 p-3 shadow-sm rounded bg-white">
           <h3 className="m-0 fw-bold">LCR BJB Syariah</h3>
-
-          <div className="periode d-flex align-items-center gap-2">
-            <label className="fw-bold mb-0">Periode </label>
-            <div className="input-group input-group-sm custom-month-picker">
-              <input type="month" className="form-control" />
-              <span className="input-group-text">
-                <FaRegCalendarAlt />
-              </span>
-            </div>
-          </div>
+          <span className="text-muted">Periode: {month}</span>
         </div>
 
-        {/* Accordion Tables */}
         <Accordion defaultActiveKey={["0", "1", "2"]} alwaysOpen>
           <Accordion.Item eventKey="0">
             <Accordion.Header>HQLA Level 1</Accordion.Header>
@@ -174,11 +317,13 @@ export default function LCR() {
           </Accordion.Item>
         </Accordion>
 
-        <div className="card mb-4 mt-4 shadow-sm grand-totals-card" style={{ backgroundColor: "#fff" }}>
-          <div className="card-body d-flex justify-content-between align-items-center">
+        <div className="grand-totals-card mt-4 p-3 shadow-sm rounded bg-white">
+          <div className="d-flex w-100 justify-content-between align-items-center">
             <div>
               <strong>Total HQLA Sebelum Penyesuaian</strong>
-              <div className="small text-muted">Jumlah seluruh nilai sebelum haircut</div>
+              <div className="small text-muted">
+                Jumlah seluruh nilai sebelum haircut
+              </div>
             </div>
             <div className="text-end">
               <div id="grand-total-input" className="h4 mb-1">
@@ -195,6 +340,11 @@ export default function LCR() {
           </div>
         </div>
 
+        <div className="mt-3 text-end">
+          <button className="btn btn-primary" onClick={handleSave}>
+            Simpan Data
+          </button>
+        </div>
       </div>
     </div>
   );
